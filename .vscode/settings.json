@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "extview.h": "c",
+        "simplebuffer.h": "c",
+        "game.h": "c",
+        "key.h": "c",
+        "hal.h": "c"
+    }
+}

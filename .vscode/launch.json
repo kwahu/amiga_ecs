@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "amiga",
+            "request": "launch",
+            "name": "Amiga 500",
+            "config": "A500",
+            "program": "${workspaceFolder}\\build\\ecs",
+            "kickstart": "C:/amiga/kick500.rom",
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "amiga",
+            "request": "launch",
+            "name": "Amiga 1200",
+            "config": "A1200",
+            "program": "${workspaceFolder}\\build\\ecs",
+            "kickstart": "C:/amiga/kick.rom",
+            "internalConsoleOptions": "openOnSessionStart"
+        }
+    ]
+}
