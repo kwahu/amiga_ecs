@@ -6,12 +6,13 @@
 #include "ecs_test.c"
 #include "printf.h"
 
+tEntityList *g_Entities = NULL;
 
 int main()
 {
   halCreate();
 
-  tEntityList *entities = CreateECSTest();
+  g_Entities = CreateECSTest();
 
   while (1)
   {
@@ -21,10 +22,11 @@ int main()
      }*/
 
     // Update the entity
-    update_entities(entities);
+    update_entities(g_Entities);
     char str[256];
     //ConvertIntToChar(entities->pEntities[0].pComponents[0].data, str, 3);
-    ConvertIntToChar(((tComponentTypePosition *)entities->entity->components->component->data)->x, str, 3);
+ 
+    ConvertIntToChar(((tComponentTypePosition *)g_Entities->next->entity->components->component->data)->x, str, 3);
 
     printFont(128, 128, str ,1);
   }

@@ -8,7 +8,7 @@ typedef struct _tEntityList tEntityList;
 
 typedef struct _tComponent
 {
-    int type;
+    unsigned char type;
     void *data;
 } tComponent;
 
@@ -20,7 +20,7 @@ typedef struct _tComponentList
 
 typedef struct _tEntity
 {
-    int id;
+    unsigned short int id;
     tComponentList *components;
 } tEntity;
 

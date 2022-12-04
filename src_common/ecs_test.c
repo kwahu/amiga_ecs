@@ -2,25 +2,29 @@
 
 tEntityList* CreateECSTest()
 {
-
-    // Create an entity
-    tEntity *entity = allocateMemory(sizeof(tEntity));
-    entity->id = 1;
-    entity->components = NULL;
-
+    tEntityList *entities = NULL;
     // create an entity list
-    tEntityList *entities = allocateMemory(sizeof(tEntityList));
-    entities->entity = entity;
-    entities->next = NULL;
+    entities = init_entity_list();  
 
-    // Create a component position
-    tComponent *component = allocateMemory(sizeof(tComponent));
-    component->type = COMPONENT_TYPE_POSITION;
-    component->data = allocateMemory(sizeof(tComponentTypePosition));
-    *((tComponentTypePosition *)component->data) = (tComponentTypePosition){0, 0};
+    for(int c=1;c<20;c++)
+    {
+        // Create an entity
+        tEntity *entity = allocateMemory(sizeof(tEntity));
+        entity->id = c;
+        entity->components = NULL;
 
-    // Add the component to the entity
-    add_component(entity, component);
+        add_entity(entities, entity);
+
+        // Create a component position
+        tComponent *component = allocateMemory(sizeof(tComponent));
+        component->type = COMPONENT_TYPE_POSITION;
+        component->data = allocateMemory(sizeof(tComponentTypePosition));
+        *((tComponentTypePosition *)component->data) = (tComponentTypePosition){c, c};
+
+        // Add the component to the entity
+        add_component(entity, component);
+    }
+
 
     return entities;
 }

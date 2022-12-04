@@ -1,7 +1,7 @@
 typedef struct _tComponentTypePosition
 {
-    int x;
-    int y;
+    short int x;
+    short int y;
 } tComponentTypePosition;
 
 void ComponentPositionUpdate(tComponentTypePosition *component)

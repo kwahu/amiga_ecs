@@ -2,6 +2,34 @@
 #include "ecs.h"
 #include "component_types.h"
 
+// Create an entity list
+tEntityList * init_entity_list()
+{
+    tEntityList *list = allocateMemory(sizeof(tEntityList));
+    //create a root entity here so that we do not have to check if the list is empty in the future
+    tEntity *root = allocateMemory(sizeof(tEntity));
+    root->id = 0;
+    root->components = NULL;
+
+    list->entity = root;
+    list->next = NULL;
+    
+    return list;
+}
+// Add an entity to the list
+void add_entity(tEntityList *entities, tEntity *entity)
+{
+    //tEntityList *current_entity = entities;
+    // Find the last entity
+    while (entities->next != NULL)
+    {
+        entities = entities->next;
+    }
+    //
+    entities->next = allocateMemory(sizeof(tEntityList));
+    entities->next->entity = entity;
+    entities->next->next = NULL;
+}
 
 
 // adding a component to an entity.
@@ -50,6 +78,3 @@ void update_entities(tEntityList *entities)
         current = current->next;
     }
 }
-
-
-//func
