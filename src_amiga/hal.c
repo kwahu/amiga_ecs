@@ -26,18 +26,18 @@ static tTextBitMap *s_pTextBitMap;
 
 uintptr_t __stack_chk_guard = STACK_CHK_GUARD;
 
-__attribute__((noreturn))
-void __stack_chk_fail(void) {
+__attribute__((noreturn)) void __stack_chk_fail(void)
+{
 	logWrite("ERR: STACK SMASHED\n");
-	while(1) {}
+	while (1)
+	{
+	}
 }
 #endif
 
-
-
 void halCreate()
 {
-    systemCreate();
+	systemCreate();
 	logOpen(GENERIC_MAIN_LOG_PATH);
 	memCreate();
 	timerCreate();
@@ -48,19 +48,16 @@ void halCreate()
 	logBlockBegin("gsPlayCreate");
 	// Prepare view & viewport
 	s_pPlayView = viewCreate(0,
-		TAG_VIEW_GLOBAL_CLUT, 1,
-		TAG_DONE
-	);
+							 TAG_VIEW_GLOBAL_CLUT, 1,
+							 TAG_DONE);
 	s_pPlayVPort = vPortCreate(0,
-		TAG_VPORT_VIEW, s_pPlayView,
-		TAG_VPORT_BPP, ECS_BPP,
-		TAG_DONE
-	);
+							   TAG_VPORT_VIEW, s_pPlayView,
+							   TAG_VPORT_BPP, ECS_BPP,
+							   TAG_DONE);
 	s_pPlayBfr = simpleBufferCreate(0,
-		TAG_SIMPLEBUFFER_VPORT, s_pPlayVPort,
-		TAG_SIMPLEBUFFER_BITMAP_FLAGS, BMF_CLEAR,
-		TAG_DONE
-	);
+									TAG_SIMPLEBUFFER_VPORT, s_pPlayVPort,
+									TAG_SIMPLEBUFFER_BITMAP_FLAGS, BMF_CLEAR,
+									TAG_DONE);
 
 	// Prepare palette
 	s_pPlayVPort->pPalette[0] = 0x000;
@@ -80,19 +77,19 @@ void halCreate()
 		1, 2, 3,
 		s_pPlayBfr->pBack
 	);*/
-	//PlayShowMain();
-
-    
-	
+	// PlayShowMain();
 
 	// Display view with its viewports
 	viewLoad(s_pPlayView);
 	logBlockEnd("gsPlayCreate");
 	systemUnuse();
-	
 }
-printFont(int x, int y, char *str, int color)
+void printFont(int x, int y, char *str, int color)
 {
 	fontFillTextBitMap(s_pPlayFont, s_pTextBitMap, str);
-	fontDrawTextBitMap(s_pPlayBfr->pBack, s_pTextBitMap, x, y, color, FONT_COOKIE|FONT_CENTER);
+	fontDrawTextBitMap(s_pPlayBfr->pBack, s_pTextBitMap, x, y, color, FONT_COOKIE | FONT_CENTER);
+}
+void *allocateMemory(UWORD size)
+{
+	return memAllocFast(size);
 }

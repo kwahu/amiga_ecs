@@ -4,6 +4,8 @@
         "simplebuffer.h": "c",
         "game.h": "c",
         "key.h": "c",
-        "hal.h": "c"
+        "hal.h": "c",
+        "component_types.h": "c",
+        "types.h": "c"
     }
 }
