@@ -4,7 +4,7 @@
 #include "types.h"
 
 typedef struct _tComponentList tComponentList;
-typedef struct _tEntityList tEntityList;
+typedef struct _tEntity tEntity;
 
 typedef struct _tComponent
 {
@@ -22,14 +22,15 @@ typedef struct _tEntity
 {
     unsigned short int id;
     tComponentList *components;
+    tEntity *next;
 } tEntity;
-
+/*
 typedef struct _tEntityList
 {
     tEntity *entity;
     tEntityList *next;
 } tEntityList;
-
+*/
 // adding a component to an entity
 void add_component(tEntity *entity, tComponent *component);
 
@@ -37,7 +38,7 @@ void add_component(tEntity *entity, tComponent *component);
 tComponent *get_component(tEntity *entity, int type);
 
 // updating the entities and their components.
-void update_entities(tEntityList *entities);
+void update_entities(tEntity *entities);
 
 
 #endif

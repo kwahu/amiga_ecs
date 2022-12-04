@@ -1,10 +1,10 @@
 #include "ecs.c"
 
-tEntityList* CreateECSTest()
+void CreateECSTest(tEntity *entities)
 {
-    tEntityList *entities = NULL;
+    //tEntityList *entities = NULL;
     // create an entity list
-    entities = init_entity_list();  
+    //entities = init_entity_list();  
 
     for(int c=1;c<20;c++)
     {
@@ -24,7 +24,4 @@ tEntityList* CreateECSTest()
         // Add the component to the entity
         add_component(entity, component);
     }
-
-
-    return entities;
 }

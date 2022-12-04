@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "ecs.h"
 #include "component_types.h"
-
+/*
 // Create an entity list
 tEntityList * init_entity_list()
 {
@@ -15,20 +15,26 @@ tEntityList * init_entity_list()
     list->next = NULL;
     
     return list;
-}
+}*/
+
 // Add an entity to the list
-void add_entity(tEntityList *entities, tEntity *entity)
+void add_entity(tEntity *entities, tEntity *entity)
 {
-    //tEntityList *current_entity = entities;
+    tEntity *current = entities;
     // Find the last entity
-    while (entities->next != NULL)
+    while (current->next != NULL)
     {
-        entities = entities->next;
+        current = current->next;
     }
-    //
-    entities->next = allocateMemory(sizeof(tEntityList));
+    //set the current last entity to the new entity
+    current->next = entity;
+
+    //set new entity as the last entity
+    entity->next = NULL;
+
+    /*entities->next = allocateMemory(sizeof(tEntityList));
     entities->next->entity = entity;
-    entities->next->next = NULL;
+    entities->next->next = NULL;*/
 }
 
 
@@ -57,12 +63,12 @@ tComponent *get_component(tEntity *entity, int type)
 }
 
 // updating the entities and their components.
-void update_entities(tEntityList *entities)
+void update_entities(tEntity *entities)
 {
-    tEntityList *current = entities;
+    tEntity *current = entities;
     while (current != NULL)
     {
-        tComponentList *current_component = current->entity->components;
+        tComponentList *current_component = current->components;
         while (current_component != NULL)
         {
             // update the component based on its type.
