@@ -4,10 +4,6 @@
 #include "component_types.h"
 #include "ecs_test.c"
 
-//#include "printf.h"
-
-
-
 int main()
 {
 
@@ -15,16 +11,20 @@ int main()
 
   CreateECSTest();
 
+  char str[256];
+  str[0] = 'a';
+
   while (1)
   {
  
 
     // Update the entity
     updateEntities(&g_Entities);
-    char str[256];
+    
     //ConvertIntToChar(entities->pEntities[0].pComponents[0].data, str, 3);
  
     //ConvertIntToChar(g_Entities.entities[0].position.x, str, 3);
+    
 
     printFont(128, 128, str ,1);
   }

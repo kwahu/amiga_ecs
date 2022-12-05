@@ -4,7 +4,7 @@
 #include "types.h"
 #include "component_position.c"
 
-#define MAX_ENTITIES 1000
+#define MAX_ENTITIES 1100
 #define MAX_COMPONENTS 10
 
 typedef struct _tComponent
@@ -15,8 +15,7 @@ typedef struct _tComponent
 
 typedef struct _tEntity
 {
-    unsigned char numComponents; //additionally it defines if the entity is active or not
-    //tComponent* components[MAX_COMPONENTS];
+    unsigned char numComponents;
     tComponentTypePosition position;
 } tEntity;
 

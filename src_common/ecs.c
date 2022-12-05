@@ -1,6 +1,6 @@
 #ifndef _ECS_C_
 #define _ECS_C_
-//#include <stdlib.h>
+
 #include "hal.h"
 #include "ecs.h"
 #include "component_types.h"
@@ -12,9 +12,6 @@ unsigned char AddEntity(tECS *entities)
     //return last index
     return entities->numEntities++;
 }
-
-
-
 
 //update all entities
 void updateEntities(tECS *entities)
