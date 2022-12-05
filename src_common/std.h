@@ -1,3 +1,6 @@
+#ifndef _STD_C_
+#define _STD_C_
+
 void ConvertIntToChar(int number, char *test, int size)
 {
 	int temp;
@@ -16,3 +19,5 @@ void ConvertIntToChar(int number, char *test, int size)
 	}
 	test[size-1] = 0;
 }
+
+#endif

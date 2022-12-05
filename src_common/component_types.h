@@ -1,9 +1,10 @@
-#ifndef _HAL_COMPONENT_TYPES_H_
-#define _HAL_COMPONENT_TYPES_H_
+#ifndef _ECS_COMPONENT_TYPES_H_
+#define _ECS_COMPONENT_TYPES_H_
 
 #include "component_position.c"
 
 //Component types
+#define COMPONENT_TYPE_NAME 0
 #define COMPONENT_TYPE_POSITION 1
 #define COMPONENT_TYPE_VELOCITY 2
 #define COMPONENT_TYPE_SPRITE 3

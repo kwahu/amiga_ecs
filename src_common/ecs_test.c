@@ -1,27 +1,19 @@
 #include "ecs.c"
 
-void CreateECSTest(tEntity *entities)
+void CreateECSTest()
 {
-    //tEntityList *entities = NULL;
-    // create an entity list
-    //entities = init_entity_list();  
-
-    for(int c=1;c<20;c++)
+    for(int c=0;c<1000;c++)
     {
         // Create an entity
-        tEntity *entity = allocateMemory(sizeof(tEntity));
-        entity->id = c;
-        entity->components = NULL;
-
-        add_entity(entities, entity);
+        unsigned char entityIndex = AddEntity(&g_Entities);
 
         // Create a component position
-        tComponent *component = allocateMemory(sizeof(tComponent));
+       /* tComponent *component = allocateMemory(sizeof(tComponent));
         component->type = COMPONENT_TYPE_POSITION;
         component->data = allocateMemory(sizeof(tComponentTypePosition));
-        *((tComponentTypePosition *)component->data) = (tComponentTypePosition){c, c};
+        *((tComponentTypePosition *)component->data) = (tComponentTypePosition){c, c};*/
+        g_Entities.entities[entityIndex].position.x = c;
 
-        // Add the component to the entity
-        add_component(entity, component);
+      //  AddComponent(&g_Entities.entities[entityIndex], component);
     }
 }

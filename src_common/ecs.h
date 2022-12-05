@@ -2,9 +2,10 @@
 #define _ECS_H_
 
 #include "types.h"
+#include "component_position.c"
 
-typedef struct _tComponentList tComponentList;
-typedef struct _tEntity tEntity;
+#define MAX_ENTITIES 1000
+#define MAX_COMPONENTS 10
 
 typedef struct _tComponent
 {
@@ -12,33 +13,21 @@ typedef struct _tComponent
     void *data;
 } tComponent;
 
-typedef struct _tComponentList
-{
-    tComponent *component;
-    tComponentList *next;
-} tComponentList;
-
 typedef struct _tEntity
 {
-    unsigned short int id;
-    tComponentList *components;
-    tEntity *next;
+    unsigned char numComponents; //additionally it defines if the entity is active or not
+    //tComponent* components[MAX_COMPONENTS];
+    tComponentTypePosition position;
 } tEntity;
-/*
-typedef struct _tEntityList
+
+typedef struct _tECS
 {
-    tEntity *entity;
-    tEntityList *next;
-} tEntityList;
-*/
-// adding a component to an entity
-void add_component(tEntity *entity, tComponent *component);
+    tEntity entities[MAX_ENTITIES];
+    unsigned char numEntities;
+} tECS;
 
-// retrieving a component from an entity.
-tComponent *get_component(tEntity *entity, int type);
+tECS g_Entities;
 
-// updating the entities and their components.
-void update_entities(tEntity *entities);
-
+unsigned char AddEntity(tECS *entities);
 
 #endif
