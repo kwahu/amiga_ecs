@@ -6,7 +6,7 @@ tEntityList* CreateECSTest()
     // create an entity list
     entities = init_entity_list();  
 
-    for(int c=1;c<20;c++)
+    for(int c=1;c<10;c++)
     {
         // Create an entity
         tEntity *entity = allocateMemory(sizeof(tEntity));
