@@ -25,7 +25,7 @@ typedef struct _tECS
     unsigned char numEntities;
 } tECS;
 
-tECS g_Entities;
+extern tECS g_Entities;
 
 unsigned char AddEntity(tECS *entities);
 

@@ -4,6 +4,8 @@
 #include "component_types.h"
 #include "ecs_test.c"
 
+tECS g_Entities;
+
 int main()
 {
 
