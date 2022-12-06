@@ -2,7 +2,8 @@
 #include "std.h"
 #include "hal.h"
 #include "component_types.h"
-#include "ecs_test.c"
+#include "ecs.h"
+#include "ecs_test.h"
 
 tECS g_Entities;
 
@@ -28,7 +29,7 @@ int main()
     //ConvertIntToChar(g_Entities.entities[0].position.x, str, 3);
     
 
-    printFont(128, 128, str ,1);
+   printFont(128, 128, str ,1);
   }
   halDestroy();
 

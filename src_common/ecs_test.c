@@ -1,4 +1,4 @@
-#include "ecs.c"
+#include "ecs.h"
 
 void CreateECSTest()
 {

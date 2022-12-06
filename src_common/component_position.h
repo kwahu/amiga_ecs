@@ -7,4 +7,6 @@ typedef struct _tComponentTypePosition
     short int y;
 } tComponentTypePosition;
 
+void ComponentPositionUpdate(tComponentTypePosition *component);
+
 #endif

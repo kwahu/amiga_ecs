@@ -2,7 +2,7 @@
 #define _ECS_H_
 
 #include "types.h"
-#include "component_position.c"
+#include "component_position.h"
 
 #define MAX_ENTITIES 1100
 #define MAX_COMPONENTS 10
@@ -28,5 +28,7 @@ typedef struct _tECS
 extern tECS g_Entities;
 
 unsigned char AddEntity(tECS *entities);
+
+void updateEntities(tECS *entities);
 
 #endif
