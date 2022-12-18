@@ -28,7 +28,6 @@ typedef struct _tECS
 extern tECS g_Entities;
 
 unsigned char AddEntity(tECS *entities);
-
 void updateEntities(tECS *entities);
 
 #endif

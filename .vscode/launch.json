@@ -21,6 +21,19 @@
             "program": "${workspaceFolder}\\build\\ecs",
             "kickstart": "C:/amiga/kick.rom",
             "internalConsoleOptions": "openOnSessionStart"
+
+        }
+        ,
+        {
+            "type": "amiga",
+            "request": "launch",
+            "name": "Amiga 1200 FAST",
+            "chipmem": "512k",
+            "config": "A1200-FAST",
+            "program": "${workspaceFolder}\\build\\ecs",
+            "kickstart": "C:/amiga/kick.rom",
+            "internalConsoleOptions": "openOnSessionStart"
+            
         }
     ]
 }

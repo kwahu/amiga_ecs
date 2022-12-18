@@ -6,6 +6,8 @@
         "key.h": "c",
         "hal.h": "c",
         "component_types.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "tracing.h": "c",
+        "stdint.h": "c"
     }
 }
