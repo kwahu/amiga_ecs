@@ -14,7 +14,7 @@ void ScreenToPlanes(unsigned char *screen, unsigned char *planes[4], unsigned ch
 
 	unsigned short *offset = (unsigned short *) planes[0];
 
-	for(int y = 0; y < 64; y++)
+	for(int y = 64; y > 0; --y)
     {
 		for(int x = 0; x < 32; x+=2)
 		{

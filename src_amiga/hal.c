@@ -72,21 +72,21 @@ void HalCreate()
 
 	// Prepare palette
 	s_pPlayVPort->pPalette[0] = 0x0000; // First color is also border color
-	s_pPlayVPort->pPalette[1] = 0x0111; // Gray
-	s_pPlayVPort->pPalette[2] = 0x0222; // Red - not max, a bit dark
-	s_pPlayVPort->pPalette[3] = 0x0333; // Blue - same brightness as red
-	s_pPlayVPort->pPalette[4] = 0x0444; // Blue - same brightness as red
-	s_pPlayVPort->pPalette[5] = 0x0555;
-	s_pPlayVPort->pPalette[6] = 0x0666;
-	s_pPlayVPort->pPalette[7] = 0x0777;
-	s_pPlayVPort->pPalette[8] = 0x0888;
-	s_pPlayVPort->pPalette[9] = 0x0999;
-	s_pPlayVPort->pPalette[10] = 0x0aaa;
-	s_pPlayVPort->pPalette[11] = 0x0bbb;
-	s_pPlayVPort->pPalette[12] = 0x0ccc;
-	s_pPlayVPort->pPalette[13] = 0x0ddd;
-	s_pPlayVPort->pPalette[14] = 0x0eee;
-	s_pPlayVPort->pPalette[15] = 0x0fff;
+	s_pPlayVPort->pPalette[1] = 0x0112; // Gray
+	s_pPlayVPort->pPalette[2] = 0x0223; // Red - not max, a bit dark
+	s_pPlayVPort->pPalette[3] = 0x0434; // Blue - same brightness as red
+	s_pPlayVPort->pPalette[4] = 0x0534; // Blue - same brightness as red
+	s_pPlayVPort->pPalette[5] = 0x0744;
+	s_pPlayVPort->pPalette[6] = 0x0854;
+	s_pPlayVPort->pPalette[7] = 0x0a64;
+	s_pPlayVPort->pPalette[8] = 0x0b74;
+	s_pPlayVPort->pPalette[9] = 0x0d85;
+	s_pPlayVPort->pPalette[10] = 0x0e95;
+	s_pPlayVPort->pPalette[11] = 0x0ea5;
+	s_pPlayVPort->pPalette[12] = 0x0eb6;
+	s_pPlayVPort->pPalette[13] = 0x0fc8;
+	s_pPlayVPort->pPalette[14] = 0x0fda;
+	s_pPlayVPort->pPalette[15] = 0x0fec;
 
 	// Load font
 	s_pPlayFont = fontCreate("data/fonts/silkscreen.fnt");
@@ -119,9 +119,10 @@ void ProcessInput()
 {
 	joyUp = joyCheck(JOY1_UP);
 	joyDown = joyCheck(JOY1_DOWN);
-	joyLeft = joyUse(JOY1_LEFT);
-	joyRight = joyUse(JOY1_RIGHT);
-	joyFire = joyUse(JOY1_FIRE);
+	joyLeft = joyCheck(JOY1_LEFT);
+	joyRight = joyCheck(JOY1_RIGHT);
+	joyFire = joyCheck(JOY1_FIRE);
+
 
 	//if(keyUse(KEY_UP) || joyUse(JOY1_UP)) {
 

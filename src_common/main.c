@@ -13,92 +13,108 @@ tECS g_Entities;
 
 unsigned char joyUp, joyDown, joyLeft, joyRight, joyFire;
 
-   /*  void DrawScreen(unsigned char counter)
-     {
-         for(int x = 0; x < COLUMNS; x++)
-          {
-              for(int y = 0; y < ROWS; y++)
-              {
-                  screen[x+y*COLUMNS] = zbuffer[x][y];//map[x*4][y*2];//x+y+counter;
-              }
-          }
-     }*/
+  unsigned char counter = 0;
+  unsigned char playerY, playerX = 0;
+
+  char str[1];
+
+/*  void DrawScreen(unsigned char counter)
+  {
+      for(int x = 0; x < COLUMNS; x++)
+       {
+           for(int y = 0; y < ROWS; y++)
+           {
+               screen[x+y*COLUMNS] = zbuffer[x][y];//map[x*4][y*2];//x+y+counter;
+           }
+       }
+  }*/
+
+void ReadInputs()
+{
+  ProcessInput();
+  if (joyUp)
+  {
+    playerY++;
+    *(planes[0] + 32000) = (unsigned char)0xff;
+    str[0] = 'u';
+  }
+  else if (joyDown)
+  {
+    playerY--;
+    *(planes[0] + 32000) = (unsigned char)0x00;
+    str[0] = 'd';
+  }
+    else if (joyLeft)
+  {
+    playerX--;
+    *(planes[0] + 32000) = (unsigned char)0x00;
+    str[0] = 'd';
+  }
+    else if (joyRight)
+  {
+    playerX++;
+    *(planes[0] + 32000) = (unsigned char)0x00;
+    str[0] = 'd';
+  }
+  else
+  {
+    str[0] = 'n';
+  }
+}
 
 int main()
 {
 
   HalCreate();
 
-  //CreateECSTest();
+  // CreateECSTest();
 
-  char str[1];
+  
   str[0] = 'a';
 
-  screen = memAlloc(COLUMNS*ROWS, MEMF_ANY);
+  screen = memAlloc(COLUMNS * ROWS, MEMF_ANY);
 
-  GenMap();
+  GenMap(counter);
   Angles();
   Angles2();
   Height();
 
 
-  unsigned char counter = 0;
 
   while (1)
   {
-   HalProcess();
-   ProcessInput();
-   Test1(counter);
+    counter++;
+    //TransformMap(counter, 100, 100, 100, 100);
+    HalProcess();
+    
+    Test1(playerX, playerY);
 
-//DrawScreen(counter);
+    // DrawScreen(counter);
     ScreenToPlanes(screen, planes, counter);
 
-    printFont(160, 100, str ,0);
-     
-     if(joyUp) 
-     {
-      counter++;
-      *(planes[0]+32000) = (unsigned char) 0xff;
-      str[0] = 'u';
-     }
-     if(joyDown) 
-     {
-      counter--;
-      *(planes[0]+32000) = (unsigned char) 0x00;
-      str[0] = 'd';
-     }
+    printFont(160, 100, str, 0);
+    ReadInputs();
+    printFont(160, 100, str, 15);
 
-     printFont(160, 100, str ,15);
-     
-    //vPortWaitForEnd(s_pPlayVPort);
-    // Clear the buffer
-    //simpleBufferClear(s_pPlayBfr);
-    
-    
+    // vPortWaitForEnd(s_pPlayVPort);
+    //  Clear the buffer
+    // simpleBufferClear(s_pPlayBfr);
 
-    
-    
-    
-    
-    //MovePlanesToChip();
+    // MovePlanesToChip();
 
     // Update the entity
-    //updateEntities(&g_Entities);
-    
-    //ConvertIntToChar(entities->pEntities[0].pComponents[0].data, str, 3);
- 
-    //ConvertIntToChar(screen[0][0], str, 3);
-    
-    
-    
+    // updateEntities(&g_Entities);
+
+    // ConvertIntToChar(entities->pEntities[0].pComponents[0].data, str, 3);
+
+    // ConvertIntToChar(screen[0][0], str, 3);
   }
   HalDestroy();
 
   return 0;
 }
 
-   /* switch(eState) {
-       case STATE_MENU: menuLoop(); break;
-       case STATE_GAME: gameLoop(); break;
-     }*/
-
+/* switch(eState) {
+    case STATE_MENU: menuLoop(); break;
+    case STATE_GAME: gameLoop(); break;
+  }*/

@@ -1,7 +1,7 @@
 #include "tracing.h"
 #include "std.h"
 
-unsigned char map[128][128];
+unsigned char map[256][256];
 unsigned char angle[COLUMNS];
 unsigned char angles[COLUMNS][DEPTH];
 unsigned char heights[ROWS][DEPTH];
@@ -9,13 +9,24 @@ unsigned char *screen;
 unsigned char zbuffer[COLUMNS][ROWS];
 
 //generate a map
-void GenMap(void)
+void GenMap(unsigned char counter)
 {
-    for(unsigned char i = 0; i < 128; i++)
+    for(unsigned char i = 0; i < 255; i++)
     {
-        for(unsigned char j = 0; j < 128; j++)
+        for(unsigned char j = 0; j < 255; j++)
         {
-            map[i][j] = sinByte(i+j)>>4;
+            map[i][j] = sin16(i*2+j*2+counter);
+        }
+    }
+}
+
+void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsigned char sizeX, unsigned char sizeY)
+{
+    for(unsigned char i = x; i < x+sizeX; i++)
+    {
+        for(unsigned char j = y; j < y+sizeY; j++)
+        {
+            map[i][j] = sin16(i*2+j*2+counter);
         }
     }
 }
@@ -48,12 +59,12 @@ void Height(void)
     {
         for(unsigned char j = 0; j < DEPTH; j++)
         {
-            heights[i][j] = i + j;
+            heights[i][j] = i/4 + j/8;
         }
     }
 }
 
-void Test1(unsigned char counter) {
+void Test1(unsigned char playerX, unsigned char playerY) {
     //unsigned short int mapPosition = 0;
     //short int mapStep;
     unsigned char *mapPointer;
@@ -63,7 +74,7 @@ void Test1(unsigned char counter) {
     unsigned char depth;
 
     for(unsigned char col = 0; col < COLUMNS; col++) {  //for each x point in a row on a screen
-        mapPointer = &map[col][counter];                      //start at the x screen position of the map
+        mapPointer = &map[playerX][playerY];                      //start at the x screen position of the map
         row = 0; depth = 0; color = 0;                  //reset the row, depth, and color
         while(row < ROWS) {                             //until all rows are done
             mapHeight = *(mapPointer);                  //read map height at current pathtrace point
