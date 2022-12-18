@@ -2,20 +2,20 @@
 #include "std.h"
 
 unsigned char map[256][256];
-unsigned char angle[COLUMNS];
+//unsigned char angle[COLUMNS];
 unsigned char angles[COLUMNS][DEPTH];
 unsigned char heights[ROWS][DEPTH];
 unsigned char *screen;
 unsigned char zbuffer[COLUMNS][ROWS];
 
 //generate a map
-void GenMap(unsigned char counter)
+void GenMap()
 {
-    for(unsigned char i = 0; i < 255; i++)
+    for(unsigned char y = 0; y < 255; y++)
     {
-        for(unsigned char j = 0; j < 255; j++)
+        for(unsigned char x = 0; x < 255; x++)
         {
-            map[i][j] = sin16(i*2+j*2+counter);
+            map[x][y] = sin16(x*2+y);
         }
     }
 }
@@ -31,14 +31,7 @@ void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsig
     }
 }
 
-//probably 45 degrees in each direction
-void Angles(void)
-{
-    for(unsigned char i = 0; i < COLUMNS; i++)
-    {
-        angle[i] = COLUMNS/2*4 + i*4;
-    }
-}
+
 
 //probably 45 degrees in each direction
 void Angles2(void)
@@ -59,12 +52,12 @@ void Height(void)
     {
         for(unsigned char j = 0; j < DEPTH; j++)
         {
-            heights[i][j] = i/4 + j/8;
+            heights[i][j] = i/2 + j/16;
         }
     }
 }
 
-void Test1(unsigned char playerX, unsigned char playerY) {
+void PathTracing(unsigned char playerX, unsigned char playerY) {
     //unsigned short int mapPosition = 0;
     //short int mapStep;
     unsigned char *mapPointer;

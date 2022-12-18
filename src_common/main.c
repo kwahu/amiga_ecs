@@ -13,7 +13,7 @@ tECS g_Entities;
 
 unsigned char joyUp, joyDown, joyLeft, joyRight, joyFire;
 
-  unsigned char counter = 0;
+  unsigned char counter, counter2 = 0;
   unsigned char playerY, playerX = 0;
 
   char str[1];
@@ -74,27 +74,34 @@ int main()
 
   screen = memAlloc(COLUMNS * ROWS, MEMF_ANY);
 
-  GenMap(counter);
-  Angles();
+  GenMap();
+
   Angles2();
   Height();
-
+  GenDither64();
 
 
   while (1)
   {
-    counter++;
-    //TransformMap(counter, 100, 100, 100, 100);
+    if(counter == 3)
+      counter = 0;
+    else
+      counter++;
+
+    counter2++;
+    //TransformMap(counter2, 0, 0, 100, 30);
     HalProcess();
     
-    Test1(playerX, playerY);
-
+    
+    PathTracing(playerX, playerY);
     // DrawScreen(counter);
-    ScreenToPlanes(screen, planes, counter);
+    ScreenToPlanes64(screen, planes, counter);
+    //MovePlanesToChip();
+    
 
-    printFont(160, 100, str, 0);
+    //printFont(160, 100, str, 0);
     ReadInputs();
-    printFont(160, 100, str, 15);
+    //printFont(160, 100, str, 15);
 
     // vPortWaitForEnd(s_pPlayVPort);
     //  Clear the buffer

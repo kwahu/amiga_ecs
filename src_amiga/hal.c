@@ -6,19 +6,19 @@
 #include <ace/managers/system.h>
 #include <ace/managers/joy.h>
 
- static tView *s_pPlayView;
- static tVPort *s_pPlayVPort;
- static tSimpleBufferManager *s_pPlayBfr;
+static tView *s_pPlayView;
+static tVPort *s_pPlayVPort;
+static tSimpleBufferManager *s_pPlayBfr;
 
- static tFont *s_pPlayFont;
- static tTextBitMap *s_pTextBitMap;
- //static tBitMap *s_pPlanesBitMap;
+static tFont *s_pPlayFont;
+static tTextBitMap *s_pTextBitMap;
+static tBitMap *s_pPlanesBitMap;
 
 extern unsigned char joyUp, joyDown, joyLeft, joyRight, joyFire;
 
- #define ECS_BPP 4
+#define ECS_BPP 4
 
- unsigned char *planes[ECS_BPP];
+unsigned char *planes[ECS_BPP];
 
 //-------------------------------------------------------- STACK SMASH DETECTION
 #if defined(__GNUC__)
@@ -92,12 +92,16 @@ void HalCreate()
 	s_pPlayFont = fontCreate("data/fonts/silkscreen.fnt");
 	s_pTextBitMap = fontCreateTextBitMap(160, s_pPlayFont->uwHeight);
 
-	//s_pPlanesBitMap = bitmapCreate(320, 200, ECS_BPP, BMF_FASTMEM);
+	//s_pPlanesBitMap = bitmapCreate(320, 200, ECS_BPP, BMF_FASTMEM | BMF_INTERLEAVED);
 
-	planes[0] = s_pPlayBfr->pBack->Planes[0];
-	planes[1] = s_pPlayBfr->pBack->Planes[1];
-	planes[2] = s_pPlayBfr->pBack->Planes[2];
-	planes[3] = s_pPlayBfr->pBack->Planes[3];
+	//planes[0] = s_pPlanesBitMap->Planes[0];
+	//planes[1] = s_pPlanesBitMap->Planes[1];
+	//planes[2] = s_pPlanesBitMap->Planes[2];
+	//planes[3] = s_pPlanesBitMap->Planes[3];
+	planes[0] =s_pPlayBfr->pBack->Planes[0];
+	planes[1] =s_pPlayBfr->pBack->Planes[1];
+	planes[2] =s_pPlayBfr->pBack->Planes[2];
+	planes[3] =s_pPlayBfr->pBack->Planes[3];
 
 	// Display view with its viewports
 	viewLoad(s_pPlayView);
@@ -146,6 +150,6 @@ void MovePlanesToChip()
 		//memcpy(s_pPlayBfr->pBack->Planes[2], planes[2], 8000);
 		//memcpy(s_pPlayBfr->pBack->Planes[3], planes[3], 8000);
 
- 	//blitCopy(s_pPlanesBitMap, 0, 0,s_pPlayBfr->pBack, 0, 0,320, 20, MINTERM_COOKIE);
+ 	//blitCopy(s_pPlanesBitMap, 0, 0,s_pPlayBfr->pBack, 0, 0,320, 32, MINTERM_COOKIE);
 	
 }
