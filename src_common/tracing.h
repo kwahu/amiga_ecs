@@ -8,17 +8,16 @@
 
 extern unsigned char map[256][256];
 //extern unsigned char angle[COLUMNS];
-extern unsigned char angles[COLUMNS][DEPTH];
-extern unsigned char heights[ROWS][DEPTH];
+extern unsigned short angles[COLUMNS][DEPTH];
+extern char heights[ROWS][DEPTH];
 extern unsigned char *screen;
-extern unsigned char zbuffer[COLUMNS][ROWS];
+extern unsigned char *zbuffer;
 
 void GenMap();
 void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsigned char sizeX, unsigned char sizeY);
 void Angles(void);
-void Angles2(void);
 void Height(void);
-void PathTracing(unsigned char playerX, unsigned char playerY);
+void PathTracing(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
 void Test2(void);
 
 #endif

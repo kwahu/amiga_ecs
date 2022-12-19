@@ -3,7 +3,7 @@
 
 extern unsigned short dither[16][16][4];
 void ScreenToPlanes32(unsigned char *screen, unsigned char *planes[4], unsigned char counter);
-void ScreenToPlanes64(unsigned char *screen, unsigned char *planes[4], unsigned char counter);
+void ScreenToPlanes64(unsigned char *buffer, unsigned char *planes[4], unsigned char counter, unsigned char yoffset);
 void GenDither32();
 void GenDither64();
 

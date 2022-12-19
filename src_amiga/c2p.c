@@ -40,24 +40,24 @@ void GenDither64()
 
 
 
-void ScreenToPlanes64(unsigned char *screen, unsigned char *planes[4], unsigned char counter)
+void ScreenToPlanes64(unsigned char *buffer, unsigned char *planes[4], unsigned char counter, unsigned char yoffset)
 {
 	//unsigned short int offset = 0;
 	//unsigned short int position = 0;
-	unsigned char color = counter;
+	//unsigned char color = counter;
 
 	unsigned short *offset = (unsigned short *) planes[0];
 
-	offset += 80 * counter;
+	offset += 80 * counter + yoffset * 80;
 
 	for(int y = 32; y > 0; --y)
     {
 		for(int x = 0; x < 64; x+=4)
 		{
-			*(offset) = dither64[*(screen+x+y*64)][*(screen+x+1+y*64)][*(screen+x+2+y*64)][*(screen+x+3+y*64)][0];
-			*(offset+20) = dither64[*(screen+x+y*64)][*(screen+x+1+y*64)][*(screen+x+2+y*64)][*(screen+x+3+y*64)][1];
-			*(offset+40) = dither64[*(screen+x+y*64)][*(screen+x+1+y*64)][*(screen+x+2+y*64)][*(screen+x+3+y*64)][2];
-			*(offset+60) = dither64[*(screen+x+y*64)][*(screen+x+1+y*64)][*(screen+x+2+y*64)][*(screen+x+3+y*64)][3];
+			*(offset) = dither64[*(buffer+x+y*64)][*(buffer+x+1+y*64)][*(buffer+x+2+y*64)][*(buffer+x+3+y*64)][0];
+			*(offset+20) = dither64[*(buffer+x+y*64)][*(buffer+x+1+y*64)][*(buffer+x+2+y*64)][*(buffer+x+3+y*64)][1];
+			*(offset+40) = dither64[*(buffer+x+y*64)][*(buffer+x+1+y*64)][*(buffer+x+2+y*64)][*(buffer+x+3+y*64)][2];
+			*(offset+60) = dither64[*(buffer+x+y*64)][*(buffer+x+1+y*64)][*(buffer+x+2+y*64)][*(buffer+x+3+y*64)][3];
 			offset += 1; //go to next 2 pixels
 		}
 		offset += 4+60+80+80+80;	//go to next line
@@ -68,7 +68,7 @@ void ScreenToPlanes32(unsigned char *screen, unsigned char *planes[4], unsigned 
 {
 	//unsigned short int offset = 0;
 	//unsigned short int position = 0;
-	unsigned char color = counter;
+	//unsigned char color = counter;
 
 	unsigned short *offset = (unsigned short *) planes[0];
 

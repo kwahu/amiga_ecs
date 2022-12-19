@@ -13,10 +13,10 @@ tECS g_Entities;
 
 unsigned char joyUp, joyDown, joyLeft, joyRight, joyFire;
 
-  unsigned char counter, counter2 = 0;
-  unsigned char playerY, playerX = 0;
+unsigned char counter, counter2;
+unsigned char playerY, playerX, playerZ;
 
-  char str[1];
+char str[3];
 
 /*  void DrawScreen(unsigned char counter)
   {
@@ -34,13 +34,13 @@ void ReadInputs()
   ProcessInput();
   if (joyUp)
   {
-    playerY++;
+    playerZ++;
     *(planes[0] + 32000) = (unsigned char)0xff;
     str[0] = 'u';
   }
   else if (joyDown)
   {
-    playerY--;
+    playerZ--;
     *(planes[0] + 32000) = (unsigned char)0x00;
     str[0] = 'd';
   }
@@ -73,12 +73,15 @@ int main()
   str[0] = 'a';
 
   screen = memAlloc(COLUMNS * ROWS, MEMF_ANY);
+  zbuffer = memAlloc(COLUMNS * ROWS, MEMF_ANY);
 
   GenMap();
 
-  Angles2();
+  Angles();
   Height();
   GenDither64();
+
+  playerX = 128;
 
 
   while (1)
@@ -93,15 +96,17 @@ int main()
     HalProcess();
     
     
-    PathTracing(playerX, playerY);
+    PathTracing(playerX, playerY, playerZ);
     // DrawScreen(counter);
-    ScreenToPlanes64(screen, planes, counter);
+    ScreenToPlanes64(screen, planes, counter, 128);
+    ScreenToPlanes64(zbuffer, planes, counter, 0);
     //MovePlanesToChip();
     
 
-    //printFont(160, 100, str, 0);
+    printFont(160, 200, str, 0);
     ReadInputs();
-    //printFont(160, 100, str, 15);
+    ConvertIntToChar(playerX, str, 3);
+    printFont(160, 200, str, 15);
 
     // vPortWaitForEnd(s_pPlayVPort);
     //  Clear the buffer
@@ -114,7 +119,7 @@ int main()
 
     // ConvertIntToChar(entities->pEntities[0].pComponents[0].data, str, 3);
 
-    // ConvertIntToChar(screen[0][0], str, 3);
+    // 
   }
   HalDestroy();
 
