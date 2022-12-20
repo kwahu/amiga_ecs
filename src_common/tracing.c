@@ -1,110 +1,134 @@
 #include "tracing.h"
 #include "std.h"
 
-unsigned char map[256][256];
+unsigned char *map;
 //unsigned char angle[COLUMNS];
 unsigned short angles[COLUMNS][DEPTH];
 char heights[ROWS][DEPTH];
 unsigned char *screen;
 unsigned char *zbuffer;
 
-//generate a map
+
+/**
+			 * Generates a map with a given size.
+			 * 
+			 * @param x The x-coordinate of the map.
+			 * @param y The y-coordinate of the map.
+			 */
 void GenMap()
 {
     for(unsigned char y = 0; y < 255; y++)
     {
         for(unsigned char x = 0; x < 255; x++)
         {
-            map[x][y] = sin16(x*2)/4+sin16(y)/4;
-            if(x == 100 || x == 200)
-                map[x][y] += 8;
+            *(map+x+y*256) = sin16(x*8)*2;
+            if(x > 10 && x < 20)
+                *(map+x+y*256) = 2;
         }
     }
 }
+
+/**
+			 * TransformMap() - Transforms a section of a map with a given counter
+			 * 
+			 * @param counter - The counter used to transform the map
+			 * @param x - The x coordinate of the starting point of the map section
+			 * @param y - The y coordinate of the starting point of the map section
+			 * @param sizeX - The width of the map section
+			 * @param sizeY - The height of the map section
+			 */
 
 void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsigned char sizeX, unsigned char sizeY)
 {
-    for(unsigned char i = x; i < x+sizeX; i++)
+    for(unsigned char xx = x; xx < x+sizeX; xx++)
     {
-        for(unsigned char j = y; j < y+sizeY; j++)
+        for(unsigned char yy = y; yy < y+sizeY; yy++)
         {
-            map[i][j] = sin16(i*2+j*2+counter);
+            *(map+xx+yy*256) = sin16(xx*2+yy*2+counter);
         }
     }
 }
 
 
-//generate table of ray traveling on an angle trhough a map table
-//map is 256x256, the ray is DEPTH long, and the angle is 45 degrees
-//each rain in a column, of the size of COLUMN, is traveling at an angle that in the middle of the column is 0 degrees and at the edges is 45 degrees
-//the angle is calculated by the distance from the middle of the column
-//the angle is then used to calculate the step in the map table
-//the step is the number of columns in the map table that the ray travels in one step
-//the step is calculated by the angle and the depth of the ray
-//the step is then used to calculate the next point in the map table that the ray travels to
-//the ray is then drawn to the screen
+/**
+			 * Angles() - Calculates the angles of the columns and depths
+			 * 
+			 * Iterates through each column and depth and assigns the value of 256 to each angle
+			 */
 void Angles(void)
 {
     for(unsigned char col = 0; col < COLUMNS; col++)
     {
         for(unsigned char depth = 0; depth < DEPTH; depth++)
         {
-            angles[col][depth] = 256 + ((col-COLUMNS/2)*depth)/32 + (col-COLUMNS/2)/8;
+            //next line & +/- angle & starting width of the screen
+            angles[col][depth] = 256 + ((col-COLUMNS/2)*depth)/32;// + (col-COLUMNS/2)/8;
         }
     }
 }
 
 
-//generate a height table
+
+/**
+ 			* Height() - Calculates the height of each row and depth
+ 			* @param void
+ 			* @return void
+ 			*/
 void Height(void)
 {
     for(unsigned char row = 0; row < ROWS; row++)
     {
         for(unsigned char depth = 0; depth < DEPTH; depth++)
         {
-            heights[row][depth] = ((row - ROWS/2)* depth)/8 ;
+            heights[row][depth] = ((row - ROWS/2)* depth)/4 ;
         }
     }
 }
 
 
-//TODO - remove DEPTH protection from the while loop
+
+/**
+ * PathTracing() is a function that traces a path from a given player's x, y, and z coordinates
+ * to a given map. It will then update the color and depth of the screen and depth buffer accordingly.
+ * 
+ * @param playerX The x coordinate of the player.
+ * @param playerY The y coordinate of the player.
+ * @param playerZ The z coordinate of the player.
+ */
 void PathTracing(unsigned char playerX, unsigned char playerY, unsigned char playerZ) {
-    //unsigned short int mapPosition = 0;
-    //short int mapStep;
     unsigned char *mapPointer;
     unsigned char mapHeight;
     unsigned char color;
     unsigned char row;
-    unsigned char depth;
+    unsigned char depth;    
+    unsigned char *start = map + playerX + playerY*256;
+    unsigned short offset;
 
     for(unsigned char col = 0; col < COLUMNS; col++) {  //for each x point in a row on a screen
-        mapPointer = &map[playerX][playerY];         //-COLUMNS/2+col             //start at the x screen position of the map
-        row = 0; depth = 0; color = 0;                  //reset the row, depth, and color
+        mapPointer = start;
+        offset = col;
+        row = 0; depth = 0;                   //reset the row, depth, and color
         while(row < ROWS) {                             //until all rows are done
             mapHeight = *(mapPointer);                  //read map height at current pathtrace point
             if( mapHeight > heights[row][depth] + playerZ ) {     //check if pathtrace hit the right height
                 color = *(mapPointer);                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!update the color
-                *(screen+col+row*COLUMNS) = color;               //write the color to the screen
-                *(zbuffer+col+row*COLUMNS) = DEPTH/2 - 1 - depth/2;              //write the depth to the depth buffer
+                *(screen+offset) = color;               //write the color to the screen
+                *(zbuffer+offset) = depth;              //write the depth to the depth buffer
                 row++;                                  //move to the next row
+                offset += COLUMNS;                      //move to the next row
             } else {                                    //if we dont find the right height
                 if(depth < DEPTH - 1) {                     //check if we are not at the end of the depth
                     mapPointer += angles[col][depth];   //move pathtrace to the next depth
                     depth++;                            //move to the next depth
                 } else {                                //fill the rest of the screen with background
                     while(row < ROWS) {
-                        *(screen+col+row*COLUMNS) = 0;           //write the color to the screen
-                        *(zbuffer+col+row*COLUMNS) = 0;          //write the depth to the depth buffer
+                        *(screen+offset) = 0;           //write the color to the screen
+                        *(zbuffer+offset) = 0;          //write the depth to the depth buffer
                         row++;                        //move to the next depth
+                        offset += COLUMNS;                      //move to the next row
                     }
                 }
             }
         }
     }    
-}
-
-void Test2(void)
-{
-
 }

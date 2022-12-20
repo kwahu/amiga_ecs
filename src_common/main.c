@@ -61,6 +61,13 @@ void ReadInputs()
     str[0] = 'n';
   }
 }
+void ManageMotionBlur(void)
+{
+     if(counter == 3)
+      counter = 0;
+    else
+      counter++;
+}
 
 int main()
 {
@@ -74,6 +81,7 @@ int main()
 
   screen = memAlloc(COLUMNS * ROWS, MEMF_ANY);
   zbuffer = memAlloc(COLUMNS * ROWS, MEMF_ANY);
+  map = memAlloc(256*256, MEMF_ANY);
 
   GenMap();
 
@@ -81,50 +89,34 @@ int main()
   Height();
   GenDither64();
 
-  playerX = 128;
+  playerX = 50;
+  playerZ = 30;
 
 
   while (1)
   {
-    if(counter == 3)
-      counter = 0;
-    else
-      counter++;
+    ManageMotionBlur();
 
     counter2++;
     //TransformMap(counter2, 0, 0, 100, 30);
     HalProcess();
     
-    
     PathTracing(playerX, playerY, playerZ);
-    // DrawScreen(counter);
-    ScreenToPlanes64(screen, planes, counter, 128);
     ScreenToPlanes64(zbuffer, planes, counter, 0);
-    //MovePlanesToChip();
-    
 
-    printFont(160, 200, str, 0);
+    //printFont(160, 200, str, 0);
     ReadInputs();
-    ConvertIntToChar(playerX, str, 3);
-    printFont(160, 200, str, 15);
-
-    // vPortWaitForEnd(s_pPlayVPort);
-    //  Clear the buffer
-    // simpleBufferClear(s_pPlayBfr);
-
-    // MovePlanesToChip();
+    //ConvertIntToChar(playerX, str, 3);
+    //printFont(160, 200, str, 15);
 
     // Update the entity
     // updateEntities(&g_Entities);
-
-    // ConvertIntToChar(entities->pEntities[0].pComponents[0].data, str, 3);
-
-    // 
   }
   HalDestroy();
 
   return 0;
 }
+
 
 /* switch(eState) {
     case STATE_MENU: menuLoop(); break;
