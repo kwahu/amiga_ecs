@@ -81,7 +81,7 @@ int main()
 
   screen = memAlloc(COLUMNS * ROWS, MEMF_ANY);
   zbuffer = memAlloc(COLUMNS * ROWS, MEMF_ANY);
-  map = memAlloc(256*256, MEMF_ANY);
+  map = memAlloc(256*256*2, MEMF_ANY);
 
   GenMap();
 
@@ -100,9 +100,12 @@ int main()
     counter2++;
     //TransformMap(counter2, 0, 0, 100, 30);
     HalProcess();
+
+    playerY ++;
     
     PathTracing(playerX, playerY, playerZ);
-    ScreenToPlanes64(zbuffer, planes, counter, 0);
+    ScreenToPlanes64(screen, planes, counter, 0);
+    //ScreenToPlanes64(zbuffer, planes, counter, 128);
 
     //printFont(160, 200, str, 0);
     ReadInputs();

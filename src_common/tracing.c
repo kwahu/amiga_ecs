@@ -8,7 +8,7 @@ char heights[ROWS][DEPTH];
 unsigned char *screen;
 unsigned char *zbuffer;
 
-
+//
 /**
 			 * Generates a map with a given size.
 			 * 
@@ -21,9 +21,8 @@ void GenMap()
     {
         for(unsigned char x = 0; x < 255; x++)
         {
-            *(map+x+y*256) = sin16(x*8)*2;
-            if(x > 10 && x < 20)
-                *(map+x+y*256) = 2;
+            *(map+x*2+y*512) = sin256(x*4)/5 + sin256(y*2)/10;
+            *(map+x*2+1+y*512) = sin256(x*2)/16 + sin256(y*8)/16;//sin256(x*8+y*16)/9+2;
         }
     }
 }
@@ -57,12 +56,17 @@ void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsig
 			 */
 void Angles(void)
 {
+    char angle = 0;
+    //char column = 0;
     for(unsigned char col = 0; col < COLUMNS; col++)
     {
         for(unsigned char depth = 0; depth < DEPTH; depth++)
         {
+            angle = ((col-COLUMNS/2)*depth)/32;
+            //column = (col-COLUMNS/2)/4;
             //next line & +/- angle & starting width of the screen
-            angles[col][depth] = 256 + ((col-COLUMNS/2)*depth)/32;// + (col-COLUMNS/2)/8;
+            //+ (column - column % 2)
+            angles[col][depth] = 512  + (angle - angle % 2); //make sure its even
         }
     }
 }
@@ -101,17 +105,17 @@ void PathTracing(unsigned char playerX, unsigned char playerY, unsigned char pla
     unsigned char color;
     unsigned char row;
     unsigned char depth;    
-    unsigned char *start = map + playerX + playerY*256;
+    unsigned char *start = map + playerX*2 + playerY*512;
     unsigned short offset;
 
     for(unsigned char col = 0; col < COLUMNS; col++) {  //for each x point in a row on a screen
-        mapPointer = start;
+        mapPointer = start + (col-COLUMNS/2) - (col-COLUMNS/2) % 2;
         offset = col;
-        row = 0; depth = 0;                   //reset the row, depth, and color
+        row = 0; depth = 2;                   //reset the row, depth, and color
         while(row < ROWS) {                             //until all rows are done
             mapHeight = *(mapPointer);                  //read map height at current pathtrace point
             if( mapHeight > heights[row][depth] + playerZ ) {     //check if pathtrace hit the right height
-                color = *(mapPointer);                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!update the color
+                color = *(mapPointer+1);                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!update the color
                 *(screen+offset) = color;               //write the color to the screen
                 *(zbuffer+offset) = depth;              //write the depth to the depth buffer
                 row++;                                  //move to the next row
