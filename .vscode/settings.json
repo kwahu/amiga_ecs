@@ -8,6 +8,7 @@
         "component_types.h": "c",
         "types.h": "c",
         "tracing.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "FIRE.C": "cpp"
     }
 }

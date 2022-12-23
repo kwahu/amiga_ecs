@@ -12,13 +12,13 @@ static tSimpleBufferManager *s_pPlayBfr;
 
 static tFont *s_pPlayFont;
 static tTextBitMap *s_pTextBitMap;
-static tBitMap *s_pPlanesBitMap;
+static unsigned long timeCount;
 
 extern unsigned char joyUp, joyDown, joyLeft, joyRight, joyFire;
 
 #define ECS_BPP 4
 
-unsigned char *planes[ECS_BPP];
+unsigned char *planes;
 
 //-------------------------------------------------------- STACK SMASH DETECTION
 #if defined(__GNUC__)
@@ -90,18 +90,9 @@ void HalCreate()
 
 	// Load font
 	s_pPlayFont = fontCreate("data/fonts/silkscreen.fnt");
-	s_pTextBitMap = fontCreateTextBitMap(160, s_pPlayFont->uwHeight);
+	s_pTextBitMap = fontCreateTextBitMap(32, s_pPlayFont->uwHeight);
 
-	//s_pPlanesBitMap = bitmapCreate(320, 200, ECS_BPP, BMF_FASTMEM | BMF_INTERLEAVED);
-
-	//planes[0] = s_pPlanesBitMap->Planes[0];
-	//planes[1] = s_pPlanesBitMap->Planes[1];
-	//planes[2] = s_pPlanesBitMap->Planes[2];
-	//planes[3] = s_pPlanesBitMap->Planes[3];
-	planes[0] =s_pPlayBfr->pBack->Planes[0];
-	planes[1] =s_pPlayBfr->pBack->Planes[1];
-	planes[2] =s_pPlayBfr->pBack->Planes[2];
-	planes[3] =s_pPlayBfr->pBack->Planes[3];
+	planes =s_pPlayBfr->pBack->Planes[0];
 
 	// Display view with its viewports
 	viewLoad(s_pPlayView);
@@ -113,7 +104,7 @@ void HalProcess()
  simpleBufferProcess(s_pPlayBfr);
  timerProcess();
  joyProcess();
- vPortWaitForEnd(s_pPlayVPort);
+ //vPortWaitForEnd(s_pPlayVPort);
 }
 void HalDestroy()
 {
@@ -127,9 +118,7 @@ void ProcessInput()
 	joyRight = joyCheck(JOY1_RIGHT);
 	joyFire = joyCheck(JOY1_FIRE);
 
-
 	//if(keyUse(KEY_UP) || joyUse(JOY1_UP)) {
-
 }
 void printFont(int x, int y, char *str, int color)
 {
@@ -142,14 +131,38 @@ void *allocateMemory(UWORD size)
 }
 void MovePlanesToChip()
 {
-
-
-//CopyMemQuick
 		//memcpy(s_pPlayBfr->pBack->Planes[0], planes[0], 8000);
 		//memcpy(s_pPlayBfr->pBack->Planes[1], planes[1], 8000);
 		//memcpy(s_pPlayBfr->pBack->Planes[2], planes[2], 8000);
 		//memcpy(s_pPlayBfr->pBack->Planes[3], planes[3], 8000);
 
  	//blitCopy(s_pPlanesBitMap, 0, 0,s_pPlayBfr->pBack, 0, 0,320, 32, MINTERM_COOKIE);
-	
+}
+
+void timerFormatPrec2(char *szBfr, ULONG ulPrecTime) {
+	ULONG ulResult;
+	if(ulPrecTime > 0xFFFFFFFF>>2) {
+		sprintf(szBfr, ">7min");
+		return;
+	}
+	ulResult = ulPrecTime*4;
+	ulResult = ulResult / 10;
+	if(ulResult < 1000) {
+		sprintf(szBfr, "%3luu", ulResult);
+		return;
+	}
+	ulResult /= 1000;
+	if(ulResult < 1000) {
+		sprintf(szBfr, "%3lum", ulResult);
+		return;
+	}
+	ulResult /= 1000;
+	sprintf(szBfr, "%lus", ulResult);
+}
+
+void GetDeltaTime(char str[15])
+{
+	unsigned long newCount = timerGetPrec();
+	timerFormatPrec2( str, timerGetDelta(timeCount,newCount));
+	timeCount = newCount;
 }

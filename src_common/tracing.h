@@ -5,9 +5,9 @@
 #define COLUMNS 64
 #define ROWS 32
 #define DEPTH 16
+#define MAPSIZE 128
 
 extern unsigned char *map;
-//extern unsigned char angle[COLUMNS];
 extern unsigned short angles[COLUMNS][DEPTH];
 extern char heights[ROWS][DEPTH];
 extern unsigned char *screen;

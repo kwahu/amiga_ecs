@@ -16,7 +16,7 @@ unsigned char joyUp, joyDown, joyLeft, joyRight, joyFire;
 unsigned char counter, counter2;
 unsigned char playerY, playerX, playerZ;
 
-char str[3];
+char str[15];
 
 /*  void DrawScreen(unsigned char counter)
   {
@@ -34,26 +34,26 @@ void ReadInputs()
   ProcessInput();
   if (joyUp)
   {
-    playerZ++;
-    *(planes[0] + 32000) = (unsigned char)0xff;
+    playerY++;
+    //*(planes + 32000) = (unsigned char)0xff;
     str[0] = 'u';
   }
   else if (joyDown)
   {
-    playerZ--;
-    *(planes[0] + 32000) = (unsigned char)0x00;
+    playerY--;
+    //*(planes + 32000) = (unsigned char)0x00;
     str[0] = 'd';
   }
     else if (joyLeft)
   {
     playerX--;
-    *(planes[0] + 32000) = (unsigned char)0x00;
+    //*(planes[0] + 32000) = (unsigned char)0x00;
     str[0] = 'd';
   }
     else if (joyRight)
   {
     playerX++;
-    *(planes[0] + 32000) = (unsigned char)0x00;
+    //*(planes[0] + 32000) = (unsigned char)0x00;
     str[0] = 'd';
   }
   else
@@ -76,21 +76,20 @@ int main()
 
   // CreateECSTest();
 
-  
-  str[0] = 'a';
-
   screen = memAlloc(COLUMNS * ROWS, MEMF_ANY);
   zbuffer = memAlloc(COLUMNS * ROWS, MEMF_ANY);
-  map = memAlloc(256*256*2, MEMF_ANY);
+  map = memAlloc(MAPSIZE*MAPSIZE*2, MEMF_ANY);
 
   GenMap();
 
   Angles();
   Height();
-  GenDither64();
+  GenDitherWord();
+  GenDitherByte();
 
   playerX = 50;
-  playerZ = 30;
+  playerY = 0;
+  playerZ = 40;
 
 
   while (1)
@@ -98,19 +97,31 @@ int main()
     ManageMotionBlur();
 
     counter2++;
-    //TransformMap(counter2, 0, 0, 100, 30);
+    //TransformMap(counter2, 64, 16, 48, 16);
     HalProcess();
 
-    playerY ++;
+    //playerY ++;
+
+    playerZ = *(map+playerX*2+playerY*MAPSIZE*2) + 10;
     
     PathTracing(playerX, playerY, playerZ);
-    ScreenToPlanes64(screen, planes, counter, 0);
+
+    // for(unsigned char x=0; x<COLUMNS; x++)
+    // {
+    //   for(unsigned char y=0; y<ROWS; y++)
+    //   {
+    //     *(screen+x+y*COLUMNS) = (x) % 32;
+    //   }
+    // }
+    ScreenToPlanesByte(screen, planes, counter, 0);
     //ScreenToPlanes64(zbuffer, planes, counter, 128);
 
-    //printFont(160, 200, str, 0);
+    //printFont(160, 50, str, 0);
+    printFont(160, 50, str, 15);
     ReadInputs();
+    GetDeltaTime(str);
     //ConvertIntToChar(playerX, str, 3);
-    //printFont(160, 200, str, 15);
+    //printFont(160, 150, str, 15);
 
     // Update the entity
     // updateEntities(&g_Entities);

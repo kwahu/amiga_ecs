@@ -15,11 +15,10 @@ extern  tSimpleBufferManager *s_pPlayBfr;
 
 extern  tFont *s_pPlayFont;
 extern  tTextBitMap *s_pTextBitMap;
-//extern  tBitMap *s_pPlanesBitMap;
 
 #define ECS_BPP 4
 
-extern unsigned char *planes[ECS_BPP];
+extern unsigned char *planes;
 
 
 void HalCreate();
@@ -29,5 +28,6 @@ void printFont(int x, int y, char *str, int color);
 void* allocateMemory(unsigned short size);
 void MovePlanesToChip();
 void ProcessInput();
+void GetDeltaTime(char str[15]);
 
 #endif

@@ -2,11 +2,13 @@
 #include "std.h"
 
 unsigned char *map;
-//unsigned char angle[COLUMNS];
 unsigned short angles[COLUMNS][DEPTH];
 char heights[ROWS][DEPTH];
 unsigned char *screen;
 unsigned char *zbuffer;
+
+unsigned short screenPositionX[COLUMNS][DEPTH];
+unsigned short screenPositionY[ROWS][DEPTH];
 
 //
 /**
@@ -17,12 +19,12 @@ unsigned char *zbuffer;
 			 */
 void GenMap()
 {
-    for(unsigned char y = 0; y < 255; y++)
+    for(unsigned char y = 0; y < MAPSIZE; y++)
     {
-        for(unsigned char x = 0; x < 255; x++)
+        for(unsigned char x = 0; x < MAPSIZE; x++)
         {
-            *(map+x*2+y*512) = sin256(x*4)/5 + sin256(y*2)/10;
-            *(map+x*2+1+y*512) = sin256(x*2)/16 + sin256(y*8)/16;//sin256(x*8+y*16)/9+2;
+            *(map+x*2+y*MAPSIZE*2) = sin256(x*2)/5 + sin256(y*2)/10;
+            *(map+x*2+1+y*MAPSIZE*2) = sin256(x*2)/16 + sin256(y*8)/16;//sin256(x*8+y*16)/9+2;
         }
     }
 }
@@ -43,7 +45,7 @@ void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsig
     {
         for(unsigned char yy = y; yy < y+sizeY; yy++)
         {
-            *(map+xx+yy*256) = sin16(xx*2+yy*2+counter);
+            *(map+xx*2+yy*MAPSIZE*2) = sin16(xx*4+yy*4+counter*2);
         }
     }
 }
@@ -66,10 +68,30 @@ void Angles(void)
             //column = (col-COLUMNS/2)/4;
             //next line & +/- angle & starting width of the screen
             //+ (column - column % 2)
-            angles[col][depth] = 512  + (angle - angle % 2); //make sure its even
+            angles[col][depth] = MAPSIZE*2  + (angle - angle % 2); //make sure its even
         }
     }
 }
+
+// -32 to 32
+// 0 to 64
+// vodi SpaceToScreen()
+// {
+//     for(unsigned char col = 0; col < COLUMNS; col++)
+//     {
+//         for(unsigned char depth = 0; depth < DEPTH; depth++)
+//         {
+//             screenPositionX[col][depth] = ( ( col - COLUMNS/2) - depth )  ;
+//         }
+//     }
+//     for(unsigned char row = 0; row < ROWS; row++)
+//     {
+//         for(unsigned char depth = 0; depth < DEPTH; depth++)
+//         {
+//             screenPositionY[row][depth] = ((row - ROWS/2)* depth)/4 ;
+//         }
+//     }
+// }
 
 
 
@@ -105,7 +127,7 @@ void PathTracing(unsigned char playerX, unsigned char playerY, unsigned char pla
     unsigned char color;
     unsigned char row;
     unsigned char depth;    
-    unsigned char *start = map + playerX*2 + playerY*512;
+    unsigned char *start = map + playerX*2 + playerY*MAPSIZE*2;
     unsigned short offset;
 
     for(unsigned char col = 0; col < COLUMNS; col++) {  //for each x point in a row on a screen
