@@ -5,20 +5,25 @@
 #define COLUMNS 64
 #define ROWS 32
 #define DEPTH 16
-#define MAPSIZE 128
+#define MAPWIDTH 64
+#define MAPLENGTH 1024
 
 extern unsigned char *map;
-extern unsigned short angles[COLUMNS][DEPTH];
-extern char heights[ROWS][DEPTH];
-extern unsigned char *screen;
+extern unsigned char angles[COLUMNS][DEPTH];
+extern char heightsByte[ROWS][DEPTH];
+extern short heightsWord[ROWS][DEPTH];
+extern unsigned char *screenByte;
+extern unsigned short *screenWord;
 extern unsigned char *zbuffer;
 
 void GenMap();
 void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsigned char sizeX, unsigned char sizeY);
-void Angles(void);
-void Height(void);
-void PathTracing(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
-void PathTracingArray(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
+void AnglesByte(void);
+void AnglesWord(void);
+void HeightByte(void);
+void HeightWord(void);
+void PathTracingByte(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
+void PathTracingWord(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
 void Test2(void);
 
 #endif

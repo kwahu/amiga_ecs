@@ -76,16 +76,19 @@ int main()
 
   // CreateECSTest();
 
-  screen = memAlloc(COLUMNS * ROWS, MEMF_ANY);
+  screenByte = memAlloc(COLUMNS * ROWS, MEMF_ANY);
+  screenWord = memAlloc(COLUMNS * ROWS * 2, MEMF_ANY);
   zbuffer = memAlloc(COLUMNS * ROWS, MEMF_ANY);
-  map = memAlloc(MAPSIZE*MAPSIZE*2, MEMF_ANY);
+  map = memAlloc(MAPWIDTH*MAPLENGTH*2, MEMF_ANY);
 
   GenMap();
 
-  Angles();
-  Height();
+  AnglesByte();
+  AnglesWord();
+  //HeightWord();
+  HeightByte();
   GenDitherWord();
-  GenDitherByte();
+  //GenDitherByte();
 
   playerX = 50;
   playerY = 0;
@@ -102,9 +105,10 @@ int main()
 
     //playerY ++;
 
-    playerZ = *(map+playerX*2+playerY*MAPSIZE*2) + 10;
+    playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 40;
     
-    PathTracing(playerX, playerY, playerZ);
+    //PathTracingByte(playerX, playerY, playerZ);
+    PathTracingWord(playerX, playerY, playerZ);
 
     // for(unsigned char x=0; x<COLUMNS; x++)
     // {
@@ -113,11 +117,12 @@ int main()
     //     *(screen+x+y*COLUMNS) = (x) % 32;
     //   }
     // }
-    ScreenToPlanesByte(screen, planes, counter, 0);
+    //ScreenToPlanesWord(screenByte, planes, counter, 0);
+    ScreenToPlanesWordWord((unsigned char*)screenWord, planes, counter, 0);
     //ScreenToPlanes64(zbuffer, planes, counter, 128);
 
     //printFont(160, 50, str, 0);
-    printFont(160, 50, str, 15);
+    printFont(50, 50, str, 15);
     ReadInputs();
     GetDeltaTime(str);
     //ConvertIntToChar(playerX, str, 3);
