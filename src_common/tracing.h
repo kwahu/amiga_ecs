@@ -4,7 +4,7 @@
 //step along the depth of the map for each point on the screen - 
 #define COLUMNS 64
 #define ROWS 32
-#define DEPTH 16
+#define DEPTH 32
 #define MAPWIDTH 64
 #define MAPLENGTH 1024
 
@@ -15,6 +15,8 @@ extern short heightsWord[ROWS][DEPTH];
 extern unsigned char *screenByte;
 extern unsigned short *screenWord;
 extern unsigned char *zbuffer;
+extern unsigned char *pAnglesByte;
+extern unsigned char *pHeightsByte;
 
 void GenMap();
 void TransformMap(unsigned char counter, unsigned char x, unsigned char y, unsigned char sizeX, unsigned char sizeY);
@@ -24,6 +26,7 @@ void HeightByte(void);
 void HeightWord(void);
 void PathTracingByte(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
 void PathTracingWord(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
+void PathTracingWordPointer(unsigned char playerX, unsigned char playerY, unsigned char playerZ);
 void Test2(void);
 
 #endif

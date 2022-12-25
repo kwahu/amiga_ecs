@@ -7,6 +7,8 @@ unsigned char anglesByte[COLUMNS][DEPTH];
 char heightsByte[ROWS][DEPTH];
 //short heightsWord[ROWS][DEPTH];
 unsigned char *screenByte;
+unsigned char *pAnglesByte;
+unsigned char *pHeightsByte;
 unsigned short *screenWord;
 unsigned char *zbuffer;
 
@@ -72,6 +74,7 @@ void AnglesByte(void)
             //next line & +/- angle & starting width of the screen
             //+ (column - column % 2)
             anglesByte[col][depth] = MAPWIDTH*2  + (angle - angle % 2); //make sure its even
+            pAnglesByte[col*DEPTH+depth] = MAPWIDTH*2  + (angle - angle % 2); //make sure its even
         }
     }
 }
@@ -126,6 +129,7 @@ void HeightByte(void)
         for(unsigned char depth = 0; depth < DEPTH; depth++)
         {
             heightsByte[row][depth] = ((row - ROWS/2)* (depth+0))/4 ;
+            pHeightsByte[row*DEPTH+depth] = ((row - ROWS/2)* (depth+0))/4 ;
         }
     }
 }
@@ -211,6 +215,47 @@ void PathTracingWord(unsigned char playerX, unsigned char playerY, unsigned char
                     mapPointer += anglesByte[col][depthByte];   //move pathtrace to the next depth
                     depthByte++;                            //move to the next depth
                     depthWord += 0x0100;
+                } else {                                //fill the rest of the screen with background
+                    while(row < ROWS) {
+                        *(screenWord+offset) = 0 + 0;           //write the color to the screen
+                        row++;                        //move to the next depth
+                        offset += COLUMNS;                      //move to the next row
+                    }
+                }
+            }
+        }
+    }    
+}
+
+void PathTracingWordPointer(unsigned char playerX, unsigned char playerY, unsigned char playerZ) {
+    unsigned char *mapPointer;
+    unsigned char row;
+    unsigned char depthByte;   
+    unsigned short depthWord;   
+    unsigned short offset;
+    unsigned char finalDepth = DEPTH - 1;
+    unsigned char *anglesPointer;
+
+    for(unsigned char col = 0; col < COLUMNS; col++) {  //for each x point in a row on a screen
+        row = 0; 
+        depthByte = 0; 
+        depthWord = 0x0200;
+        mapPointer = map + playerX*2 + playerY*MAPWIDTH*2 + (col-COLUMNS/2)  - ((col-COLUMNS/2)) % 2;
+        offset = col;
+        anglesPointer = pAnglesByte+col*DEPTH;
+                  
+        
+        while(row < ROWS) {                             //until all rows are done
+            if(*(mapPointer) > (unsigned char)(heightsByte[row][depthByte] + playerZ) ) {     //check if pathtrace hit the right height
+                *(screenWord+offset) =*(mapPointer+1) + depthWord;               //write the color to the screen
+                row++;                                  //move to the next row
+                offset += COLUMNS;                      //move to the next row
+            } else {                                    //if we dont find the right height
+                if(depthByte < finalDepth) {                     //check if we are not at the end of the depth
+                    mapPointer += *(anglesPointer);   //move pathtrace to the next depth
+                    depthByte++;                            //move to the next depth
+                    depthWord += 0x0100;
+                    anglesPointer++;
                 } else {                                //fill the rest of the screen with background
                     while(row < ROWS) {
                         *(screenWord+offset) = 0 + 0;           //write the color to the screen

@@ -81,6 +81,9 @@ int main()
   zbuffer = memAlloc(COLUMNS * ROWS, MEMF_ANY);
   map = memAlloc(MAPWIDTH*MAPLENGTH*2, MEMF_ANY);
 
+  pAnglesByte = memAlloc(COLUMNS * DEPTH, MEMF_ANY);
+  pHeightsByte = memAlloc(ROWS * DEPTH, MEMF_ANY);
+
   GenMap();
 
   AnglesByte();
@@ -108,7 +111,7 @@ int main()
     playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 40;
     
     //PathTracingByte(playerX, playerY, playerZ);
-    PathTracingWord(playerX, playerY, playerZ);
+    PathTracingWordPointer(playerX, playerY, playerZ);
 
     // for(unsigned char x=0; x<COLUMNS; x++)
     // {
