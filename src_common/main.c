@@ -69,6 +69,8 @@ void ManageMotionBlur(void)
       counter++;
 }
 
+
+
 int main()
 {
 
@@ -102,26 +104,35 @@ int main()
   {
     ManageMotionBlur();
 
+    
+
     counter2++;
     //TransformMap(counter2, 64, 16, 48, 16);
     HalProcess();
 
+    //
+
     //playerY ++;
 
     playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 40;
+
+    //copperTest();
     
     //PathTracingByte(playerX, playerY, playerZ);
     PathTracingWordPointer(playerX, playerY, playerZ);
+
+    
 
     // for(unsigned char x=0; x<COLUMNS; x++)
     // {
     //   for(unsigned char y=0; y<ROWS; y++)
     //   {
-    //     *(screen+x+y*COLUMNS) = (x) % 32;
+    //     *(screenWord+x+y*COLUMNS) = (x) % 32;
     //   }
     // }
     //ScreenToPlanesWord(screenByte, planes, counter, 0);
-    ScreenToPlanesWordWord((unsigned char*)screenWord, planes, counter, 0);
+    //ScreenToPlanesWordWord((unsigned char*)screenWord, planes, counter, 0);
+    ScreenToPlanesTopDown((unsigned char*)screenWord, planes, counter, 0);
     //ScreenToPlanes64(zbuffer, planes, counter, 128);
 
     //printFont(160, 50, str, 0);

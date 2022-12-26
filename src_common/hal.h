@@ -29,5 +29,6 @@ void* allocateMemory(unsigned short size);
 void MovePlanesToChip();
 void ProcessInput();
 void GetDeltaTime(char str[15]);
+void copperTest();
 
 #endif

@@ -4,7 +4,7 @@
 //step along the depth of the map for each point on the screen - 
 #define COLUMNS 64
 #define ROWS 32
-#define DEPTH 32
+#define DEPTH 24
 #define MAPWIDTH 64
 #define MAPLENGTH 1024
 

@@ -115,9 +115,9 @@ void ScreenToPlanesWordWord(unsigned char *buffer, unsigned char *planes, unsign
 
 	unsigned short value1, value2, value3, value4;
 
-	for(unsigned char y = ROWS; y > 0; y--)
+	for(unsigned char y = 0; y < ROWS; y++)
     {
-		offset = (unsigned short *) planes + (ROWS - y) * 320 + 80 * counter + yoffset * 80;
+		offset = (unsigned short *) planes + y * 320 + 80 * counter + yoffset * 80;
 
 		for(unsigned char x = 0; x < COLUMNS*2; x+=8)
 		{
@@ -132,6 +132,34 @@ void ScreenToPlanesWordWord(unsigned char *buffer, unsigned char *planes, unsign
 			offset += 1; //go to next 2 pixels
 		}
 		
+    }
+}
+void ScreenToPlanesTopDown(unsigned char *buffer, unsigned char *planes, unsigned char counter, unsigned char yoffset)
+{
+	unsigned short *offset = (unsigned short *) planes + 80 * counter + yoffset * 80;
+
+	unsigned short value1, value2, value3, value4;
+
+	buffer++;
+	for(unsigned char y = 0; y < ROWS; y++)
+    {
+
+		for(unsigned short i = 0; i < (COLUMNS/4); i++)
+		{
+			value1 = ditherWord[*(buffer)][*(buffer+2)][0];
+			value3 = ditherWord[*(buffer)][*(buffer+2)][1];
+			buffer += 4;
+			value2 = ditherWord[*(buffer)][*(buffer+2)][0];
+			value4 = ditherWord[*(buffer)][*(buffer+2)][1];
+			buffer += 4;
+
+			*(offset) = 	(value1 & 0xff00) + value2 / 256;
+			*(offset+40) = 	(value1 & 0xff) * 256 + (value2 & 0xff);
+			*(offset+20) = 	(value3 & 0xff00) + value4 / 256;
+			*(offset+60) = 	(value3 & 0xff) * 256 + (value4 & 0xff);
+			offset += 1;
+		}
+		offset += 320 - COLUMNS/4;
     }
 }
 

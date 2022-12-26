@@ -241,7 +241,7 @@ void PathTracingWordPointer(unsigned char playerX, unsigned char playerY, unsign
         depthByte = 0; 
         depthWord = 0x0200;
         mapPointer = map + playerX*2 + playerY*MAPWIDTH*2 + (col-COLUMNS/2)  - ((col-COLUMNS/2)) % 2;
-        offset = col;
+        offset = col + (ROWS-1)*COLUMNS;
         anglesPointer = pAnglesByte+col*DEPTH;
                   
         
@@ -249,7 +249,7 @@ void PathTracingWordPointer(unsigned char playerX, unsigned char playerY, unsign
             if(*(mapPointer) > (unsigned char)(heightsByte[row][depthByte] + playerZ) ) {     //check if pathtrace hit the right height
                 *(screenWord+offset) =*(mapPointer+1) + depthWord;               //write the color to the screen
                 row++;                                  //move to the next row
-                offset += COLUMNS;                      //move to the next row
+                offset -= COLUMNS;                      //move to the next row
             } else {                                    //if we dont find the right height
                 if(depthByte < finalDepth) {                     //check if we are not at the end of the depth
                     mapPointer += *(anglesPointer);   //move pathtrace to the next depth
@@ -260,7 +260,7 @@ void PathTracingWordPointer(unsigned char playerX, unsigned char playerY, unsign
                     while(row < ROWS) {
                         *(screenWord+offset) = 0 + 0;           //write the color to the screen
                         row++;                        //move to the next depth
-                        offset += COLUMNS;                      //move to the next row
+                        offset -= COLUMNS;                      //move to the next row
                     }
                 }
             }
