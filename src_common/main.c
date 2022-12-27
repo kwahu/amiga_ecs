@@ -74,6 +74,9 @@ void ManageMotionBlur(void)
 int main()
 {
 
+  SetCopperChunky(1);
+
+
   HalCreate();
 
   // CreateECSTest();
@@ -100,6 +103,7 @@ int main()
   playerZ = 40;
 
 
+
   while (1)
   {
     ManageMotionBlur();
@@ -116,10 +120,15 @@ int main()
 
     playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 40;
 
-    //copperTest();
-    
-    //PathTracingByte(playerX, playerY, playerZ);
     PathTracingWordPointer(playerX, playerY, playerZ);
+
+    //if(GetCopperChunky())
+      copperTest();
+    //else
+      //ScreenToPlanesTopDown((unsigned char*)screenWord, planes, counter, 16*4);
+
+    //PathTracingByte(playerX, playerY, playerZ);
+    
 
     
 
@@ -132,11 +141,11 @@ int main()
     // }
     //ScreenToPlanesWord(screenByte, planes, counter, 0);
     //ScreenToPlanesWordWord((unsigned char*)screenWord, planes, counter, 0);
-    ScreenToPlanesTopDown((unsigned char*)screenWord, planes, counter, 0);
+    //ScreenToPlanesTopDown((unsigned char*)screenWord, planes, counter, 0);
     //ScreenToPlanes64(zbuffer, planes, counter, 128);
 
     //printFont(160, 50, str, 0);
-    printFont(50, 50, str, 15);
+    //printFont(50, 50, str, 15);
     ReadInputs();
     GetDeltaTime(str);
     //ConvertIntToChar(playerX, str, 3);

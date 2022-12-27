@@ -30,5 +30,7 @@ void MovePlanesToChip();
 void ProcessInput();
 void GetDeltaTime(char str[15]);
 void copperTest();
+void SetCopperChunky(unsigned char value);
+unsigned char GetCopperChunky();
 
 #endif
