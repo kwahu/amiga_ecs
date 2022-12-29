@@ -121,132 +121,132 @@ void copperTest()
 			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+76)];
 			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+78)];
 			pBarCmds[count++].sMove.bfValue = pColors[0];
-						count++;
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+2)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+4)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+6)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+8)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+10)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+12)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+14)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+16)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+18)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+20)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+22)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+24)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+26)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+28)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+30)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+32)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+34)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+36)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+38)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+40)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+42)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+44)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+46)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+48)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+50)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+52)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+54)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+56)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+58)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+60)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+62)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+64)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+66)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+68)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+70)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+72)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+74)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+76)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+78)];
-			pBarCmds[count++].sMove.bfValue = pColors[0];
-						count++;
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+2)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+4)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+6)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+8)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+10)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+12)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+14)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+16)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+18)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+20)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+22)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+24)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+26)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+28)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+30)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+32)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+34)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+36)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+38)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+40)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+42)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+44)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+46)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+48)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+50)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+52)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+54)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+56)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+58)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+60)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+62)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+64)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+66)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+68)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+70)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+72)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+74)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+76)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+78)];
-			pBarCmds[count++].sMove.bfValue = pColors[0];
-						count++;
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+2)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+4)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+6)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+8)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+10)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+12)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+14)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+16)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+18)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+20)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+22)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+24)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+26)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+28)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+30)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+32)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+34)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+36)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+38)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+40)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+42)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+44)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+46)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+48)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+50)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+52)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+54)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+56)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+58)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+60)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+62)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+64)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+66)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+68)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+70)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+72)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+74)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+76)];
-			pBarCmds[count++].sMove.bfValue = pColors[*(buffer+78)];
-			pBarCmds[count++].sMove.bfValue = pColors[0];
+			// count++;
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+2)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+4)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+6)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+8)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+10)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+12)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+14)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+16)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+18)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+20)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+22)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+24)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+26)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+28)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+30)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+32)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+34)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+36)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+38)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+40)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+42)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+44)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+46)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+48)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+50)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+52)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+54)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+56)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+58)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+60)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+62)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+64)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+66)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+68)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+70)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+72)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+74)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+76)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+78)];
+			// pBarCmds[count++].sMove.bfValue = pColors[0];
+			// 			count++;
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+2)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+4)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+6)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+8)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+10)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+12)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+14)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+16)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+18)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+20)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+22)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+24)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+26)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+28)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+30)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+32)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+34)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+36)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+38)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+40)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+42)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+44)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+46)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+48)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+50)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+52)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+54)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+56)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+58)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+60)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+62)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+64)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+66)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+68)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+70)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+72)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+74)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+76)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+78)];
+			// pBarCmds[count++].sMove.bfValue = pColors[0];
+			// 			count++;
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+2)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+4)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+6)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+8)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+10)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+12)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+14)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+16)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+18)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+20)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+22)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+24)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+26)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+28)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+30)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+32)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+34)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+36)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+38)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+40)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+42)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+44)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+46)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+48)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+50)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+52)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+54)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+56)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+58)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+60)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+62)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+64)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+66)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+68)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+70)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+72)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+74)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+76)];
+			// pBarCmds[count++].sMove.bfValue = pColors[*(buffer+78)];
+			// pBarCmds[count++].sMove.bfValue = pColors[0];
 			buffer += 80;
 			
 			//loop copper list 4 times
@@ -275,7 +275,7 @@ void HalCreate()
 		ulMode = VIEW_COPLIST_MODE_RAW;
 		ulRawSize = (
 			simpleBufferGetRawCopperlistInstructionCount(ECS_BPP) +
-			ROWS*4 * 42 + // 16 bars, each 40 instructions
+			ROWS * 42 + // 16 bars, each 40 instructions
 			1 + // Final WAIT
 			1 // Just to be sure
 		);
@@ -297,19 +297,31 @@ void HalCreate()
 							   TAG_DONE);
 
 	s_uwCopRawOffs = 0;
+
+	if(s_isCopperChunky) 
 	s_pPlayBfr = simpleBufferCreate(0,
 									TAG_SIMPLEBUFFER_VPORT, s_pPlayVPort,
 									TAG_SIMPLEBUFFER_BITMAP_FLAGS, BMF_CLEAR | BMF_INTERLEAVED,
 									TAG_SIMPLEBUFFER_COPLIST_OFFSET, s_uwCopRawOffs, //copper related
 									TAG_DONE);
+	else
+	s_pPlayBfr = simpleBufferCreate(0,
+									TAG_SIMPLEBUFFER_VPORT, s_pPlayVPort,
+									TAG_SIMPLEBUFFER_BITMAP_FLAGS, BMF_CLEAR | BMF_INTERLEAVED,
+									TAG_DONE);
 
-	s_uwCopRawOffs += simpleBufferGetRawCopperlistInstructionCount(ECS_BPP);
+	
 
 
 
 	// ************** RAW MODE **************
 	if(s_isCopperChunky) 
 	{
+		//fill the area with the copper chunky color
+		blitRect(s_pPlayBfr->pBack, 0,0,s_pPlayBfr->uBfrBounds.uwX,s_pPlayBfr->uBfrBounds.uwY,TEST_COPPER_COLOR_INSIDE);
+
+		s_uwCopRawOffs += simpleBufferGetRawCopperlistInstructionCount(ECS_BPP);
+
 		pColors[0] = 0x0000;pColors[1] = 0x0111;
 		pColors[2] = 0x0112; pColors[3] = 0x0222; 
 		pColors[4] = 0x0223; pColors[5] = 0x0323; 
@@ -335,14 +347,32 @@ void HalCreate()
 		// - Go to position directly after simple buffer's commands.
 		tCopCmd *pBarCmds = &pCopBfr->pList[s_uwCopRawOffs];
 
-		for(unsigned char i = 0; i < ROWS*4; ++i) 
+
+		// // Higher word
+		// unsigned bfWaitY        :8; /// Y position
+		// unsigned bfWaitX        :7; /// X position
+		// unsigned bfIsWait       :1; /// Always set to 1
+		// // Lower word
+		// unsigned bfBlitterIgnore:1; /// If set to 0, waits for pos and blit finish
+		// unsigned bfVE           :7; /// Y compare enable bits
+		// unsigned bfHE           :7; /// X compare enable bits
+		// unsigned bfIsSkip       :1; /// Set to 1 for SKIP, 0 for WAIT
+
+		for(unsigned char i = 0; i < ROWS; ++i) 
 		{
+			//0
 			copSetWait(&pBarCmds[i * 42 + 0].sWait, 64, 34 + i);
+			//1-41
 			for(UBYTE j = 0; j < 40; ++j) 
 			{
 				copSetMove(&pBarCmds[i * 42 + 1 + j].sMove, &g_pCustom->color[1], pColors[j % 32]);
 			}
+			//42
 			copSetMove(&pBarCmds[i * 42 + 41].sMove, &g_pCustom->color[1], pColors[0]);
+			//43
+			//copSetWait(&pBarCmds[i * 42 + 0].sWait.bfIsSkip = 1, 0, 34 + i);
+
+			
 		}
 
 
@@ -376,10 +406,9 @@ void HalCreate()
 	s_pPlayVPort->pPalette[13] = 0x0fc8;
 	s_pPlayVPort->pPalette[14] = 0x0fda;
 	s_pPlayVPort->pPalette[15] = 0x0fec;
-	s_pPlayVPort->pPalette[TEST_COPPER_COLOR_INSIDE] = 0xAAA;
+	//s_pPlayVPort->pPalette[TEST_COPPER_COLOR_INSIDE] = 0xAAA;
 
-		//fill the area with the copper chunky color
-		blitRect(s_pPlayBfr->pBack, 0,0,s_pPlayBfr->uBfrBounds.uwX,s_pPlayBfr->uBfrBounds.uwY,TEST_COPPER_COLOR_INSIDE);
+		
 
 	// Load font
 	s_pPlayFont = fontCreate("data/fonts/silkscreen.fnt");
@@ -398,9 +427,13 @@ void HalProcess()
 	timerProcess();
 	joyProcess();
 
-	tCopList *pCopList;
-	pCopList = g_sCopManager.pCopList;
-	g_pCustom->cop1lc = (ULONG)((void *)pCopList->pFrontBfr->pList);
+	if(s_isCopperChunky)
+	{
+		tCopList *pCopList;
+		pCopList = g_sCopManager.pCopList;
+		g_pCustom->cop1lc = (ULONG)((void *)pCopList->pFrontBfr->pList);
+	}
+	
 	//copProcessBlocks();
 	//if(s_isCopperChunky)
  	//	copSwapBuffers() ;

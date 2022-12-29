@@ -2,9 +2,9 @@
 #define _TRACING_H_
   
 //step along the depth of the map for each point on the screen - 
-#define COLUMNS 40
+#define COLUMNS 80
 #define ROWS 60
-#define DEPTH 24
+#define DEPTH 32
 #define MAPWIDTH 64
 #define MAPLENGTH 1024
 

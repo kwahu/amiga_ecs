@@ -74,7 +74,7 @@ void ManageMotionBlur(void)
 int main()
 {
 
-  SetCopperChunky(1);
+  SetCopperChunky(0);
 
 
   HalCreate();
@@ -96,7 +96,8 @@ int main()
   //HeightWord();
   HeightByte();
   GenDitherWord();
-  //GenDitherByte();
+  GenDitherByte();
+  GenDitherByte256();
 
   playerX = 50;
   playerY = 0;
@@ -118,14 +119,21 @@ int main()
 
     //playerY ++;
 
-    playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 40;
+    playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 20;
 
     PathTracingWordPointer(playerX, playerY, playerZ);
 
-    //if(GetCopperChunky())
-      copperTest();
-    //else
-      //ScreenToPlanesTopDown((unsigned char*)screenWord, planes, counter, 16*4);
+    //40x8x8
+     if(GetCopperChunky())
+       copperTest(); //25,69
+     else
+      
+      ScreenToPlanesUnrolledWholeByte((unsigned char*)screenWord, planes, counter, 0*4);  //18,81
+      //ScreenToPlanesUnrolledWholeWord((unsigned char*)screenWord, planes, counter, 0*4);  //14,46
+      //ScreenToPlanesTopDown((unsigned char*)screenWord, planes, counter, 0*4);  //14,46
+      //ScreenToPlanesWordWord((unsigned char*)screenWord, planes, counter, 0*4);  //11,48
+      //ScreenToPlanesUnrolledByte((unsigned char*)screenWord, planes, counter, 0*4);  //11,56
+      //ScreenToPlanesUnrolledWord((unsigned char*)screenWord, planes, counter, 0*4);  //14,46
 
     //PathTracingByte(playerX, playerY, playerZ);
     
@@ -145,7 +153,7 @@ int main()
     //ScreenToPlanes64(zbuffer, planes, counter, 128);
 
     //printFont(160, 50, str, 0);
-    //printFont(50, 50, str, 15);
+    printFont(50, 50, str, 15);
     ReadInputs();
     GetDeltaTime(str);
     //ConvertIntToChar(playerX, str, 3);
