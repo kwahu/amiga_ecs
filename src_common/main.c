@@ -34,13 +34,13 @@ void ReadInputs()
   ProcessInput();
   if (joyUp)
   {
-    playerY++;
+    playerZ++;
     //*(planes + 32000) = (unsigned char)0xff;
     str[0] = 'u';
   }
   else if (joyDown)
   {
-    playerY--;
+    playerZ--;
     //*(planes + 32000) = (unsigned char)0x00;
     str[0] = 'd';
   }
@@ -61,9 +61,9 @@ void ReadInputs()
     str[0] = 'n';
   }
 }
-void ManageMotionBlur(void)
+void ManageMotionBlur(unsigned char value)
 {
-     if(counter == 3)
+     if(counter == value-1)
       counter = 0;
     else
       counter++;
@@ -87,27 +87,27 @@ int main()
   map = memAlloc(MAPWIDTH*MAPLENGTH*2, MEMF_ANY);
 
   pAnglesByte = memAlloc(COLUMNS * DEPTH, MEMF_ANY);
-  pHeightsByte = memAlloc(ROWS * DEPTH, MEMF_ANY);
+  //pHeightsByte = memAlloc(ROWS * DEPTH, MEMF_ANY);
 
   GenMap();
 
   AnglesByte();
-  AnglesWord();
-  //HeightWord();
   HeightByte();
-  GenDitherWord();
-  GenDitherByte();
-  GenDitherByte256();
+
+  GenDither4x4();
+  GenDither4x4Shifted();
+
+  //CalculateRayCasts();
 
   playerX = 50;
   playerY = 0;
-  playerZ = 40;
+  playerZ = 10;
 
 
 
   while (1)
   {
-    ManageMotionBlur();
+    ManageMotionBlur(4);
 
     
 
@@ -119,16 +119,16 @@ int main()
 
     //playerY ++;
 
-    playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 20;
+   // playerZ = *(map+playerX*2+playerY*MAPWIDTH*2) + 10;
 
-    PathTracingWordPointer(playerX, playerY, playerZ);
+    PathTracingWordPointer(playerX/4, playerY, playerZ/4);
 
     //40x8x8
      if(GetCopperChunky())
        copperTest(); //25,69
      else
-      
-      ScreenToPlanesUnrolledWholeByte((unsigned char*)screenWord, planes, counter, 0*4);  //18,81
+      //ScreenToPlanes2x2((unsigned char*)screenWord, planes, counter, 0*4); 
+      ScreenToPlanes4x4((unsigned char*)screenWord, planes, counter, 0*4);  //18,81
       //ScreenToPlanesUnrolledWholeWord((unsigned char*)screenWord, planes, counter, 0*4);  //14,46
       //ScreenToPlanesTopDown((unsigned char*)screenWord, planes, counter, 0*4);  //14,46
       //ScreenToPlanesWordWord((unsigned char*)screenWord, planes, counter, 0*4);  //11,48

@@ -29,6 +29,19 @@
             "request": "launch",
             "name": "Amiga 1200 FAST",
             "config": "A1200-FAST",
+            "fastmem": "8M",
+            "program": "${workspaceFolder}\\build\\ecs",
+            "kickstart": "C:/amiga/kick.rom",
+            "internalConsoleOptions": "openOnSessionStart"
+            
+        }
+        ,
+        {
+            "type": "amiga",
+            "request": "launch",
+            "name": "Amiga 4000 FAST",
+            "config": "A4000",
+            "fastmem": "8M",
             "program": "${workspaceFolder}\\build\\ecs",
             "kickstart": "C:/amiga/kick.rom",
             "internalConsoleOptions": "openOnSessionStart"
