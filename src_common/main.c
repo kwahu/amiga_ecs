@@ -94,6 +94,7 @@ int main()
   AnglesByte();
   HeightByte();
 
+  //GenDither2x2();
   GenDither4x4();
   GenDither4x4Shifted();
 

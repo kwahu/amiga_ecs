@@ -4,7 +4,7 @@
 unsigned char *map;
 //unsigned short anglesWord[COLUMNS][DEPTH];
 char anglesByte[COLUMNS][DEPTH];
-char heightsByte[ROWS][DEPTH];
+short heightsByte[ROWS][DEPTH];
 //short heightsWord[ROWS][DEPTH];
 unsigned char *screenByte;
 unsigned char *pAnglesByte;
@@ -29,11 +29,11 @@ void GenMap()
         for(unsigned short x = 0; x < MAPWIDTH; x++)
         {
             if(x < 60)
-            *(map+x*2+y*MAPWIDTH*2) = 1;//sin256(x*2)/2;// + sin256(y*2)/3;
+            *(map+x*2+y*MAPWIDTH*2) = sin256(x*4)/4;// + sin256(y*2)/3;
             else
             *(map+x*2+y*MAPWIDTH*2) = 20;
 
-            *(map+x*2+1+y*MAPWIDTH*2) = x/2;//sin256(x)/16 + sin256(y*8)/16;//sin256(x*8+y*16)/9+2;
+            *(map+x*2+1+y*MAPWIDTH*2) = (x ) % 28 + 4;//sin256(x)/16 + sin256(y*8)/16;//sin256(x*8+y*16)/9+2;
         }
     }
 }
@@ -116,13 +116,16 @@ void AnglesByte(void)
         {
             
             depthStep = depth+1;
+            //adjustedX =  x;
+             if(x <0) adjustedX = -1 / depthStep;// - (DEPTH-depth);
+             else if(x >= 0) adjustedX = 0;// + (DEPTH-depth);
+            // else adjustedX = 0;
 
-            if(x <0) adjustedX = x - 2;
-            else if(x >= 0) adjustedX = x + 2;
+            //adjustedX = x + 8;
 
-            angle = (( adjustedX ) * ( ((depthStep)*256) / DEPTH ))/256;
+            angle = (( x ) * ( ((depthStep)*256) / DEPTH ))/256 + adjustedX;
             anglesByte[col][depth] = angle;
-            pAnglesByte[col*DEPTH+depth] = MAPWIDTH*2  + (angle - angle % 2); //make sure its even
+            pAnglesByte[col*DEPTH+depth] = MAPWIDTH*2  + angle * 2; //make sure its even
             
             // depthStep = depth*10 / 4;
             // anglesByte[col][depth][0] = angle;
@@ -137,16 +140,16 @@ void AnglesByte(void)
 void HeightByte(void)
 {
     unsigned char row = 0;
-    char yMiddle = ROWS/2;
-    unsigned char depthStep = 0;
-    for(char y = -yMiddle; y < yMiddle; y++)
+    short  yMiddle = ROWS/2;
+    unsigned short depthStep = 0;
+    for(short y = -yMiddle; y < yMiddle; y++)
     {
         if(y == 0) y++;
-        for(unsigned char depth = 0; depth < DEPTH; depth++)
+        for(unsigned short depth = 0; depth < DEPTH; depth++)
         {
 
             depthStep = depth+1;
-            heightsByte[row][depth] = ( (y)  * ( (depthStep*256) / DEPTH ))/256 - 1;
+            heightsByte[row][depth] = ( (y)  * ( (depthStep*256) / DEPTH ))/64 - 1;
         }
         row++;
     }
@@ -298,6 +301,7 @@ void PathTracingWordPointer(unsigned char playerX, unsigned char playerY, unsign
     unsigned short screenOffset;
     unsigned char finalDepth = DEPTH - 1;
     unsigned char *anglesPointer;
+    unsigned short height;
 
     for(unsigned char col = 0; col < COLUMNS; col++) {  //for each x point in a row on a screen
         row = 0; 
@@ -308,8 +312,9 @@ void PathTracingWordPointer(unsigned char playerX, unsigned char playerY, unsign
         anglesPointer = pAnglesByte + col * DEPTH;
                   
         
-        while(row < ROWS) {                             //until all rows are done
-            if(*(mapPointer) > (unsigned char)(heightsByte[row][depthByte] + playerZ) ) {     //check if pathtrace hit the right height
+        while(row < ROWS) {   
+            height = *(mapPointer);                         //until all rows are done
+            if( height > (heightsByte[row][depthByte] + playerZ) ) {     //check if pathtrace hit the right height
                 *(screenWord + screenOffset) = *(mapPointer + 1) + depthWord;               //write the color to the screen
                 row++;                                  //move to the next row
                 screenOffset -= COLUMNS;                      //move to the next row
